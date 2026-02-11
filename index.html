@@ -8,10 +8,11 @@
 <style>
 body {
   margin: 0;
-  background: linear-gradient(to bottom, #111, #1c1c1c);
+  background: linear-gradient(to bottom, #0f0f0f, #1c1c1c);
   color: #f5f5f5;
   font-family: 'Playfair Display', serif;
   text-align: center;
+  overflow-x: hidden;
 }
 
 .login {
@@ -19,6 +20,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  transition: opacity 1s ease;
 }
 
 input {
@@ -36,6 +38,11 @@ button {
   border: none;
   background: #e6b8c2;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #d49aa6;
 }
 
 .hidden {
@@ -44,12 +51,29 @@ button {
 
 section {
   padding: 70px 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s ease;
+}
+
+section.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 h1 {
   font-family: 'Dancing Script', cursive;
   font-size: 3.5em;
   color: #e6b8c2;
+}
+
+h2 {
+  color: #e6b8c2;
+}
+
+footer {
+  padding: 40px;
+  opacity: 0.6;
 }
 </style>
 </head>
@@ -71,11 +95,8 @@ h1 {
 </section>
 
 <section>
-<h2>6 meses de nós</h2>
-<p>
-Seis meses que parecem uma vida inteira de sentimentos.  
-Tudo que fizemos juntos pela primeira vez construiu o que somos hoje.
-</p>
+<h2>Nosso tempo juntos</h2>
+<p id="contador"></p>
 </section>
 
 <section>
@@ -97,18 +118,68 @@ Em todas as vidas.
 </p>
 </section>
 
+<section>
+<button onclick="mostrarFinal()">Uma última coisa 🤍</button>
+<p id="mensagemFinal" class="hidden" style="margin-top:20px;">
+Você é minha escolha diária.  
+E eu sou grata por cada primeira vez ao seu lado.
+</p>
+</section>
+
+<footer>
+Feito com amor 🤍
+</footer>
+
 </div>
 
+<audio id="musica" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
 <script>
+
 function verificar() {
   var senha = document.getElementById("senha").value;
-  if (senha === "alianca") {
-    document.getElementById("login").style.display = "none";
-    document.getElementById("conteudo").classList.remove("hidden");
+  if (senha === "almo") {
+    document.getElementById("login").style.opacity = "0";
+    setTimeout(() => {
+      document.getElementById("login").style.display = "none";
+      document.getElementById("conteudo").classList.remove("hidden");
+      document.getElementById("musica").play();
+      revelarSecoes();
+    }, 1000);
   } else {
     alert("Senha incorreta 🤍");
   }
 }
+
+function revelarSecoes() {
+  const secoes = document.querySelectorAll("section");
+  secoes.forEach((secao, index) => {
+    setTimeout(() => {
+      secao.classList.add("show");
+    }, index * 500);
+  });
+}
+
+function mostrarFinal() {
+  document.getElementById("mensagemFinal").classList.remove("hidden");
+}
+
+const dataInicio = new Date("2025-08-11"); // ALTERE AQUI PARA A DATA DE VOCÊS
+const contador = document.getElementById("contador");
+
+function atualizarContador() {
+  const agora = new Date();
+  const diferenca = agora - dataInicio;
+
+  const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+  contador.innerHTML = dias + " dias juntos 🤍 e contando...";
+}
+
+setInterval(atualizarContador, 1000);
+atualizarContador();
+
 </script>
 
 </body>
