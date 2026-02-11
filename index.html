@@ -13,60 +13,7 @@ body {
   overflow-x: hidden;
 }
 
-.container {
-  padding: 60px 20px;
-}
-
-h1 {
-  color: #b76e79;
-  font-size: 40px;
-}
-
-p {
-  color: #5e5e5e;
-  font-size: 18px;
-}
-
-.tempo {
-  margin-top: 20px;
-  font-size: 20px;
-  color: #b76e79;
-}
-
-.botao-amor {
-  background-color: #f8c8dc;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 20px;
-  transition: 0.3s;
-}
-
-.botao-amor:hover {
-  background-color: #f4a6c1;
-}
-
-#mensagem-secreta {
-  margin-top: 15px;
-  font-size: 18px;
-  color: #b76e79;
-  display: none;
-}
-
-.heart {
-  position: fixed;
-  top: -10px;
-  animation: cair linear forwards;
-}
-
-@keyframes cair {
-  to {
-    transform: translateY(100vh);
-  }
-}
-
+/* TELA SENHA */
 .senha-area {
   height: 100vh;
   display: flex;
@@ -82,12 +29,88 @@ input {
   text-align: center;
 }
 
-button {
-  margin-top: 10px;
+.botao-amor {
+  background-color: #f8c8dc;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 15px;
+  transition: 0.3s;
 }
 
+.botao-amor:hover {
+  background-color: #f4a6c1;
+}
+
+/* CONTEÚDO */
 #conteudo {
   display: none;
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+
+.container {
+  padding: 60px 20px;
+}
+
+.titulo {
+  color: #b76e79;
+  font-size: 40px;
+  text-shadow: 0 0 10px rgba(183,110,121,0.3);
+  animation: brilho 3s infinite alternate;
+}
+
+@keyframes brilho {
+  from { text-shadow: 0 0 5px rgba(183,110,121,0.2); }
+  to { text-shadow: 0 0 20px rgba(183,110,121,0.5); }
+}
+
+p {
+  color: #5e5e5e;
+  font-size: 18px;
+}
+
+.cartinha {
+  max-width: 500px;
+  margin: 30px auto;
+  font-size: 17px;
+  line-height: 1.6;
+  color: #6e6e6e;
+}
+
+.tempo {
+  margin-top: 20px;
+  font-size: 20px;
+  color: #b76e79;
+}
+
+#mensagem-secreta {
+  margin-top: 15px;
+  font-size: 18px;
+  color: #b76e79;
+  display: none;
+}
+
+.final {
+  margin-top: 50px;
+  font-size: 14px;
+  color: #b76e79;
+  opacity: 0.7;
+}
+
+/* CORAÇÕES */
+.heart {
+  position: fixed;
+  top: -10px;
+  animation: cair linear forwards;
+}
+
+@keyframes cair {
+  to {
+    transform: translateY(100vh);
+  }
 }
 </style>
 </head>
@@ -102,10 +125,20 @@ button {
 
 <div id="conteudo">
   <div class="container">
-    <h1>Para Davi, meu amor 🤍</h1>
+
+    <h1 class="titulo">Para Davi, meu amor 🤍</h1>
 
     <p>
       Eu fiz isso porque amar você é uma das coisas mais bonitas que já vivi.
+    </p>
+
+    <p class="cartinha">
+      Desde o primeiro dia, você trouxe calma pra minha vida.
+      Você me ensinou sobre paciência, cuidado e amor.
+      Tudo que vivemos pela primeira vez juntos
+      vai sempre ter um lugar especial dentro de mim.
+      E se eu pudesse escolher de novo…
+      eu escolheria você.
     </p>
 
     <div class="tempo" id="contador"></div>
@@ -119,6 +152,11 @@ button {
     <p id="mensagem-secreta">
       Então fica comigo pra sempre.
     </p>
+
+    <p class="final">
+      feito por quem te ama 🤍
+    </p>
+
   </div>
 </div>
 
@@ -127,14 +165,18 @@ function verificarSenha() {
   const senha = document.getElementById("senha").value;
   if (senha === "Almo") {
     document.getElementById("senha-area").style.display = "none";
-    document.getElementById("conteudo").style.display = "block";
+    const conteudo = document.getElementById("conteudo");
+    conteudo.style.display = "block";
+    setTimeout(() => {
+      conteudo.style.opacity = "1";
+    }, 100);
   } else {
     alert("Senha errada 🤍");
   }
 }
 
 /* CONTADOR */
-const dataInicio = new Date("2025-07-14T00:00:00"); // ALTERE A DATA AQUI
+const dataInicio = new Date("2025-07-14T00:00:00"); // MUDE PARA A DATA DE VOCÊS
 
 function atualizarContador() {
   const agora = new Date();
