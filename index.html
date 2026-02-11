@@ -14,6 +14,34 @@ body {
   text-align: center;
 }
 
+.login {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+input {
+  padding: 12px;
+  border-radius: 20px;
+  border: none;
+  margin-top: 15px;
+  text-align: center;
+}
+
+button {
+  margin-top: 15px;
+  padding: 12px 25px;
+  border-radius: 25px;
+  border: none;
+  background: #e6b8c2;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
 section {
   padding: 70px 20px;
 }
@@ -23,46 +51,19 @@ h1 {
   font-size: 3.5em;
   color: #e6b8c2;
 }
-
-h2 {
-  color: #e6b8c2;
-  margin-bottom: 20px;
-}
-
-p {
-  max-width: 700px;
-  margin: auto;
-  line-height: 1.8;
-  font-size: 18px;
-}
-
-button {
-  background: #e6b8c2;
-  border: none;
-  padding: 15px 30px;
-  border-radius: 30px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: #d49aa6;
-}
-
-.hidden {
-  display: none;
-}
-
-footer {
-  padding: 40px;
-  font-size: 14px;
-  opacity: 0.7;
-}
 </style>
 </head>
 
 <body>
+
+<div class="login" id="login">
+  <h1>Para Davi 🤍</h1>
+  <p>Digite a nossa palavra especial</p>
+  <input type="password" id="senha" placeholder="Senha">
+  <button onclick="verificar()">Entrar</button>
+</div>
+
+<div id="conteudo" class="hidden">
 
 <section>
 <h1>Para Davi, Meu Amor</h1>
@@ -72,9 +73,7 @@ footer {
 <section>
 <h2>6 meses de nós</h2>
 <p>
-Estamos juntos há 6 meses.  
 Seis meses que parecem uma vida inteira de sentimentos.  
-Cada conversa, cada silêncio confortável, cada primeira vez.  
 Tudo que fizemos juntos pela primeira vez construiu o que somos hoje.
 </p>
 </section>
@@ -82,40 +81,35 @@ Tudo que fizemos juntos pela primeira vez construiu o que somos hoje.
 <section>
 <h2>O que eu amo em você</h2>
 <p>
-Sua paciência que me ensina. <br>
-Sua calma que tranquiliza meu mundo. <br>
-Seu amor que me faz sentir em casa.
+Sua paciência.<br>
+Sua calma.<br>
+Seu amor.
 </p>
 </section>
 
 <section>
 <h2>Carta para você</h2>
 <p>
-Davi, <br><br>
 Amar você é leve.  
 É descobrir que amor também é paz.  
-É saber que posso ser eu, sem medo.  
-Obrigada por cada momento, cada cuidado, cada detalhe.  
 Eu te escolheria de novo.  
 Em todas as vidas.
 </p>
 </section>
 
-<section>
-<button onclick="document.getElementById('surpresa').classList.toggle('hidden')">
-Clique aqui 💖
-</button>
+</div>
 
-<p id="surpresa" class="hidden" style="margin-top:20px;">
-Você é minha escolha diária.  
-Minha calma.  
-Meu amor.
-</p>
-</section>
-
-<footer>
-Feito com amor 🤍
-</footer>
+<script>
+function verificar() {
+  var senha = document.getElementById("senha").value;
+  if (senha === "alianca") {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("conteudo").classList.remove("hidden");
+  } else {
+    alert("Senha incorreta 🤍");
+  }
+}
+</script>
 
 </body>
 </html>
