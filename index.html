@@ -1,187 +1,202 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Para Davi, Meu Amor</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Dancing+Script&display=swap" rel="stylesheet">
+<title>Para Davi 🤍</title>
 
 <style>
 body {
   margin: 0;
-  background: linear-gradient(to bottom, #fff5f7, #ffeef2);
-  color: #5a4a4f;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Georgia', serif;
+  background: linear-gradient(to bottom, #fff1f5, #ffe4ec);
   text-align: center;
+  overflow-x: hidden;
 }
 
-.login {
+.container {
+  padding: 60px 20px;
+}
+
+h1 {
+  color: #b76e79;
+  font-size: 40px;
+}
+
+p {
+  color: #5e5e5e;
+  font-size: 18px;
+}
+
+.tempo {
+  margin-top: 20px;
+  font-size: 20px;
+  color: #b76e79;
+}
+
+.botao-amor {
+  background-color: #f8c8dc;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+.botao-amor:hover {
+  background-color: #f4a6c1;
+}
+
+#mensagem-secreta {
+  margin-top: 15px;
+  font-size: 18px;
+  color: #b76e79;
+  display: none;
+}
+
+.heart {
+  position: fixed;
+  top: -10px;
+  animation: cair linear forwards;
+}
+
+@keyframes cair {
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+.senha-area {
   height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 input {
-  padding: 12px;
+  padding: 10px;
   border-radius: 20px;
-  border: 1px solid #e89cab;
-  margin-top: 15px;
+  border: 1px solid #f8c8dc;
   text-align: center;
 }
 
 button {
-  margin-top: 15px;
-  padding: 12px 25px;
-  border-radius: 25px;
-  border: none;
-  background: #e89cab;
-  color: white;
-  cursor: pointer;
-  transition: 0.3s;
+  margin-top: 10px;
 }
 
-button:hover {
-  background: #d97f93;
-}
-
-.hidden {
+#conteudo {
   display: none;
-}
-
-section {
-  padding: 70px 20px;
-  opacity: 0;
-  transform: translateY(15px);
-  transition: all 1.2s ease;
-}
-
-section.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-h1 {
-  font-family: 'Dancing Script', cursive;
-  font-size: 3.5em;
-  color: #e89cab;
-}
-
-h2 {
-  color: #e89cab;
-}
-
-.contadorRomantico {
-  font-size: 20px;
-  margin-bottom: 15px;
-}
-
-.fade {
-  opacity: 0;
-  animation: aparecer 3s ease forwards;
-}
-
-@keyframes aparecer {
-  to {
-    opacity: 1;
-  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- TELA DE SENHA -->
-<div class="login" id="login">
-  <h1>Para Davi 🤍</h1>
-  <p>Digite nossa palavra especial</p>
+<div class="senha-area" id="senha-area">
+  <h2>Digite a nossa palavra especial 🤍</h2>
   <input type="password" id="senha" placeholder="Senha">
-  <button onclick="verificarSenha()">Entrar</button>
+  <button class="botao-amor" onclick="verificarSenha()">Entrar</button>
 </div>
 
-<!-- CONTEÚDO -->
-<div id="conteudo" class="hidden">
+<div id="conteudo">
+  <div class="container">
+    <h1>Para Davi, meu amor 🤍</h1>
 
-<section>
-<h1>Para Davi, meu amor 🤍</h1>
-<p class="fade">
-Eu fiz isso porque amar você é uma das coisas mais bonitas que já vivi.
-</p>
-</section>
+    <p>
+      Eu fiz isso porque amar você é uma das coisas mais bonitas que já vivi.
+    </p>
 
-<section>
-<h2>Nosso tempo juntinhos 🌷</h2>
-<p id="contador" class="contadorRomantico"></p>
-<p class="fade">
-E eu ainda quero muitos dias assim… com você.
-</p>
-</section>
+    <div class="tempo" id="contador"></div>
 
-<section>
-<h2>O que eu amo em você</h2>
-<p class="fade">
-Sua paciência que me ensina. <br>
-Sua calma que me abraça. <br>
-Seu amor que me faz sorrir sem perceber.
-</p>
-</section>
+    <p id="frase-rotativa"></p>
 
-<section>
-<h2>Uma coisinha simples 🤍</h2>
-<p class="fade">
-Você é minha escolha leve.  
-Meu lugar tranquilo.  
-Meu amor.
-</p>
-</section>
+    <button onclick="mostrarMensagem()" class="botao-amor">
+      Clique se você ainda me ama 🤍
+    </button>
 
+    <p id="mensagem-secreta">
+      Então fica comigo pra sempre.
+    </p>
+  </div>
 </div>
 
 <script>
 function verificarSenha() {
-  var senha = document.getElementById("senha").value;
-
+  const senha = document.getElementById("senha").value;
   if (senha === "Almo") {
-    document.getElementById("login").style.display = "none";
-    document.getElementById("conteudo").classList.remove("hidden");
-    revelarSecoes();
-    iniciarContador();
+    document.getElementById("senha-area").style.display = "none";
+    document.getElementById("conteudo").style.display = "block";
   } else {
-    alert("Senha incorreta 🤍");
+    alert("Senha errada 🤍");
   }
 }
 
-function revelarSecoes() {
-  const secoes = document.querySelectorAll("section");
-  secoes.forEach((secao, index) => {
-    setTimeout(() => {
-      secao.classList.add("show");
-    }, index * 400);
-  });
+/* CONTADOR */
+const dataInicio = new Date("2025-07-14T00:00:00"); // ALTERE A DATA AQUI
+
+function atualizarContador() {
+  const agora = new Date();
+  const diferenca = agora - dataInicio;
+
+  const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+  const horas = Math.floor((diferenca / (1000 * 60 * 60)) % 24);
+  const minutos = Math.floor((diferenca / (1000 * 60)) % 60);
+
+  document.getElementById("contador").innerHTML =
+    "Nosso tempo juntinhos:<br>" +
+    dias + " dias, " +
+    horas + " horas e " +
+    minutos + " minutinhos 🤍";
 }
 
-function iniciarContador() {
-  const contador = document.getElementById("contador");
+setInterval(atualizarContador, 60000);
+atualizarContador();
 
-  // MUDE A DATA AQUI para a data real de vocês
-  const dataInicio = new Date("2025-07-14");
+/* FRASES */
+const frases = [
+  "Você é meu lugar seguro 🤍",
+  "Com você tudo é mais leve 💗",
+  "Eu escolheria você todos os dias 💕",
+  "Meu coração sempre foi seu."
+];
 
-  function atualizar() {
-    const agora = new Date();
-    const diferenca = agora - dataInicio;
+let index = 0;
 
-    const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((diferenca / (1000 * 60 * 60)) % 24);
-    const minutos = Math.floor((diferenca / (1000 * 60)) % 60);
-
-    contador.innerHTML =
-      dias + " dias, " +
-      horas + " horas e " +
-      minutos + " minutinhos de nós 🤍";
-  }
-
-  atualizar();
-  setInterval(atualizar, 60000);
+function trocarFrase() {
+  document.getElementById("frase-rotativa").innerText = frases[index];
+  index = (index + 1) % frases.length;
 }
+
+setInterval(trocarFrase, 3000);
+trocarFrase();
+
+/* BOTÃO */
+function mostrarMensagem() {
+  document.getElementById("mensagem-secreta").style.display = "block";
+}
+
+/* CORAÇÕES */
+function criarCoracao() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+
+  const coracoes = ["🤍", "💗", "💕"];
+  heart.innerHTML = coracoes[Math.floor(Math.random() * coracoes.length)];
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 4 + 3) + "s";
+  heart.style.fontSize = (Math.random() * 10 + 15) + "px";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 7000);
+}
+
+setInterval(criarCoracao, 500);
 </script>
 
 </body>
